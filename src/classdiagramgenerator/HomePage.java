@@ -76,7 +76,7 @@ public class HomePage extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Welcome to the Automatic Class Diagram Generator!");
 
-        jLabel2.setText("Choose a Javadoc (.html) file to generate");
+        jLabel2.setText("Choose all Javadoc (.html) files to generate your Diagram");
 
         browseButton.setText("Browse...");
         browseButton.addActionListener(new java.awt.event.ActionListener() {
@@ -154,8 +154,7 @@ public class HomePage extends javax.swing.JFrame {
 
     private void browseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseButtonActionPerformed
         // TODO add your handling code here:
-        this.fileChooserFrame.setVisible(true); 
-        
+        this.fileChooserFrame.setVisible(true);         
         int returnVal = fileChooser.showOpenDialog(this);
         int i = 0;
                
@@ -170,15 +169,18 @@ public class HomePage extends javax.swing.JFrame {
             } catch (Exception ex) {
                 System.out.println("problem accessing file"+filesToParse[i].getAbsolutePath());
             }
-        } else {
+        } 
+        else if( returnVal == fileChooser.CANCEL_OPTION) {
+            this.fileChooserFrame.setVisible(false);
+        }            
+        else {
             System.out.println("File access cancelled by user.");
         }
     }//GEN-LAST:event_browseButtonActionPerformed
 
     private void fileChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileChooserActionPerformed
         // TODO add your handling code here:
-           int returnVal;
-         
+           int returnVal;        
     }//GEN-LAST:event_fileChooserActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
@@ -191,30 +193,6 @@ public class HomePage extends javax.swing.JFrame {
         textArea.setText(" ");
         filesToParse = null;
     }//GEN-LAST:event_resetButtonActionPerformed
-    
-    /*
-    private void OpenActionPerformed(java.awt.event.ActionEvent evt) {
-        int returnVal = fileChooser.showOpenDialog(this);
-        int i = 0;
-                
-        if (returnVal == fileChooser.APPROVE_OPTION) {
-            filesToParse = fileChooser.getSelectedFiles();
-            try {
-              // What to do with the file, e.g. display it in a TextArea
-              for(i=0; i < filesToParse.length; i ++) {
-                textArea.read( new FileReader( filesToParse[i].getAbsolutePath() ), null + "\n" );
-              }
-              this.fileChooserFrame.setVisible(false);
-            } catch (IOException ex) {
-                System.out.println("problem accessing file"+filesToParse[i].getAbsolutePath());
-            }
-        } else {
-            System.out.println("File access cancelled by user.");
-        }          
-    
-    }    
-    */
-    
     
     /**
      * @param args the command line arguments

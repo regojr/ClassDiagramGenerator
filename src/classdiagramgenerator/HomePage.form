@@ -133,7 +133,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Choose a Javadoc (.html) file to generate"/>
+        <Property name="text" type="java.lang.String" value="Choose all Javadoc (.html) files to generate your Diagram"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="browseButton">
