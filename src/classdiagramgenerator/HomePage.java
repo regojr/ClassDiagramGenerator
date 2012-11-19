@@ -213,8 +213,8 @@ public class HomePage extends javax.swing.JFrame {
             JOptionPane jOp = new JOptionPane();
             JOptionPane.showMessageDialog(jOp,"Please Select .html files to generate");
         }
-        else {
-           //new HtmlParser(filesToParse);   // creates class to parse the files         
+        else {          
+           new TextDisplay().setVisible(true);            
         }
     }//GEN-LAST:event_nextButtonActionPerformed
     

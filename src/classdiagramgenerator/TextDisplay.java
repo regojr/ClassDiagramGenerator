@@ -4,6 +4,9 @@
  */
 package classdiagramgenerator;
 
+import java.io.*;
+import org.jsoup.Jsoup;
+
 /**
  *
  * @author Jake
@@ -17,8 +20,44 @@ public class TextDisplay extends javax.swing.JFrame {
      */
     public TextDisplay() {
         initComponents();
+        HtmlParser hParse = new HtmlParser();   // creates class to parse the files
+        displayArea.setText("HTML2TEXT FILE DISPLAYS HERE");
+        try {
+            FileInputStream fin = new FileInputStream("Card.html");
+
+		// Get the object of DataInputStream
+		DataInputStream in = new DataInputStream(fin);
+		
+		FileOutputStream fout = new FileOutputStream("htmltext.txt");
+		DataOutputStream out = new DataOutputStream(fout);
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(out));
+                String strLine;
+		String result = "Hello World";
+		bw.write(result);
+
+		//Read File Line By Line
+		while (((in.available()) != 0))   {
+		  strLine = in.readLine();
+		  result = html2text(strLine);
+		  out.writeChars(result);
+                  displayArea.append(result);
+                  displayArea.append("\n");
+		  out.writeChars("\n");
+		}	
+
+		//Close the input stream
+		in.close();
+		out.close();
+                
+        }catch(IOException err) { err.printStackTrace(); }
     }
 
+    public static String html2text(String html) {
+	    return Jsoup.parse(html).text();
+	}
+    
     public TextDisplay( String stuffToWrite ){
         initComponents();
         
@@ -39,7 +78,7 @@ public class TextDisplay extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         displayArea = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Textual Representation of the Javadoc Files");
 
