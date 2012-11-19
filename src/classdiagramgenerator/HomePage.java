@@ -2,6 +2,7 @@ package classdiagramgenerator;
 
 import java.io.*;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -72,6 +73,9 @@ public class HomePage extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Generate Class Diagrams");
+        setBounds(new java.awt.Rectangle(600, 200, 0, 0));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Welcome to the Automatic Class Diagram Generator!");
@@ -79,6 +83,7 @@ public class HomePage extends javax.swing.JFrame {
         jLabel2.setText("Choose all Javadoc (.html) files to generate your Diagram");
 
         browseButton.setText("Browse...");
+        browseButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         browseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 browseButtonActionPerformed(evt);
@@ -86,9 +91,16 @@ public class HomePage extends javax.swing.JFrame {
         });
 
         nextButton.setText("Next >");
+        nextButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        nextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextButtonActionPerformed(evt);
+            }
+        });
 
         cancelButton.setText("Cancel");
         cancelButton.setActionCommand("jButton3");
+        cancelButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelButtonActionPerformed(evt);
@@ -100,6 +112,7 @@ public class HomePage extends javax.swing.JFrame {
         jScrollPane2.setViewportView(textArea);
 
         resetButton.setText("Reset");
+        resetButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         resetButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resetButtonActionPerformed(evt);
@@ -154,7 +167,7 @@ public class HomePage extends javax.swing.JFrame {
 
     private void browseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseButtonActionPerformed
         // TODO add your handling code here:
-        this.fileChooserFrame.setVisible(true);         
+        //this.fileChooserFrame.setVisible(true);         
         int returnVal = fileChooser.showOpenDialog(this);
         int i = 0;
                
@@ -193,6 +206,17 @@ public class HomePage extends javax.swing.JFrame {
         textArea.setText(" ");
         filesToParse = null;
     }//GEN-LAST:event_resetButtonActionPerformed
+
+    private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
+        // TODO add your handling code here:
+        if( filesToParse == null){
+            JOptionPane jOp = new JOptionPane();
+            JOptionPane.showMessageDialog(jOp,"Please Select .html files to generate");
+        }
+        else {
+            //new HtmlParser(filesToParse);   // creates class to parse the files         
+        }
+    }//GEN-LAST:event_nextButtonActionPerformed
     
     /**
      * @param args the command line arguments
